@@ -12,17 +12,16 @@ import pyttsx3
 # import requests
 
 engine = pyttsx3.init() # 'sapi5')
-# voices = engine.getproperty('voices')
-engine.setProperty('voice', 'voices[0].id')
-engine.say("I'm speaking to you from beyond the screen.")
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[0].id) # 7
+engine.say("I think it's a good idea and I stand by it")
 engine.runAndWait()
 
-# def speak(text):
-#   engine.say(text)
-#   engine.runAndWait()
+def speak(words):
+  engine.say(words)
+  engine.runAndWait()
 
-#   if __name__ == '__main__' :
-#     speak('Hello World! Hope you all are doing well.')
+
 
 # def wishMe():
 #   hour = datetime.datetime.now().hour
