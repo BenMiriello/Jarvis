@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 import wikipedia
-import datetime
+# import datetime
 import webbrowser
 # import os
 import time
@@ -11,13 +11,9 @@ import time
 # import json
 # import requests
 
-engine = pyttsx3.init() # 'sapi5')
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[11].id) # 0, 7, 10, 11, 17, 21:Italian, 25, 40, 45
+from speak import speak
 
-def speak(words):
-  engine.say(words)
-  engine.runAndWait()
+import tellTime
 
 # speak("I think it's a good idea and I stand by it.")
 
@@ -60,15 +56,6 @@ def tellDay():
     print(day_of_the_week) 
     speak("The day is " + day_of_the_week) 
 
-def tellTime(): 
-  time = str(datetime.datetime.now()) 
-
-  print(time) 
-  hour = time[11:13] 
-  min = time[14:16] 
-  speak("The time is " + hour + "Hours and" + min + "Minutes")     
-  
-
 def Hello():
   speak("Hello I am Jarvis. How may I help you?")
   # speak('You are a good boy Arthur')
@@ -90,8 +77,8 @@ def Take_query():
       tellDay() 
       continue
 
-    elif "what time is it" in query: 
-      tellTime() 
+    elif tellTime.conditions(query):
+      tellTime.response(query)
       continue
 
     elif "bye" in query: 
@@ -106,9 +93,11 @@ def Take_query():
       speak('So apparently, ')
       speak(result)
       speak('Boom.')
+      continue
 
     elif 'tell me your name' in query:
       speak("I am Jarvis.")
+      continue
 
 if __name__ == '__main__':
   Take_query()
