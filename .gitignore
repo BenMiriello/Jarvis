@@ -1,3 +1,4 @@
 .venv
-/audio
+/audio/backlog
 /__pycache__
+notes.py
