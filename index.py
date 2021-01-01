@@ -1,7 +1,5 @@
-from playsound import playsound
-
-from speak import speak
 from takeCommand import takeCommand
+from respond import respond
 from hello import hello
 import goodbye
 import tellTime
@@ -15,33 +13,23 @@ def Take_query():
     query = takeCommand()
 
     if search.conditions(query):
-      playsound('audio/star_trek/comms_end_reversed.mp3')
-      search.response()
-      playsound('audio/star_trek/comms_end.mp3')
+      respond(query, search)
       continue
 
     elif tellDay.conditions(query):
-      playsound('audio/star_trek/comms_end_reversed.mp3')
-      tellDay.response()
-      playsound('audio/star_trek/comms_end.mp3')
+      respond(query, tellDay)
       continue
 
     elif tellTime.conditions(query):
-      playsound('audio/star_trek/comms_end_reversed.mp3')
-      tellTime.response()
-      playsound('audio/star_trek/comms_end.mp3')
+      respond(query, tellTime)
       continue
 
     elif searchWikipedia.conditions(query):
-      playsound('audio/star_trek/comms_end_reversed.mp3')
-      searchWikipedia.response(query)
-      playsound('audio/star_trek/comms_end.mp3')
+      respond(query, searchWikipedia)
       continue
 
     elif goodbye.conditions(query):
-      playsound('audio/star_trek/comms_end_reversed.mp3')
-      goodbye.response()
-      playsound('audio/star_trek/comms_end.mp3')
+      respond(query, goodbye)
       exit()
 
 if __name__ == '__main__':

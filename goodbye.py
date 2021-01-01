@@ -3,5 +3,5 @@ from speak import speak
 def conditions(query):
   return 'bye' in query
 
-def response():
+def response(query=None):
   speak("See you later alligator.")
