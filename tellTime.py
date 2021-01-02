@@ -8,6 +8,7 @@ def response(query=None):
   time = str(datetime.datetime.now())
 
   print(time)
-  hour = time[11:13]
-  min = time[14:16]
-  speak("The time is " + hour + "Hours and" + min + "Minutes")
+  hours = str(int(time[11:13]) % 12)
+  minutes = time[14:16].lstrip('0')
+  
+  speak("The time is " + hours + ' ' + minutes)
