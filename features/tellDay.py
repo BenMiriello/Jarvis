@@ -2,7 +2,34 @@ import datetime
 from utilities.speak import speak
 
 def conditions(query):
-  return "what day is it" in query
+  validQueries = [
+    'what day is it',
+    'what day is',
+    'day is it',
+    'what day',
+
+    'what day is today',
+    'what is today',
+    'is today',
+    'what day is',
+
+    'tell me the day',
+    'tell day',
+    'me what day',
+
+    'what is the day',
+    'is the day',
+
+    'todays date',
+    "today's date",
+
+    "what's the day",
+    'whats the day',
+
+    'when are we',
+  ]
+
+  return any(string in query for string in validQueries)
 
 def response(query=None):
   dateAndTime = datetime.datetime.today()
