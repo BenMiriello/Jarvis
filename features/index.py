@@ -5,7 +5,7 @@ from features import tellDay
 from features import search
 from features import searchWikipedia
 
-def runPrimaryConditions(query):
+def runConditions(query):
   if search.conditions(query):
     respond(query, search)
     return True
