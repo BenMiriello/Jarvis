@@ -1,4 +1,4 @@
-from speak import speak
+from utilities.speak import speak
 import wikipedia
 
 def conditions(query):

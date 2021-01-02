@@ -1,4 +1,4 @@
-from speak import speak
+from utilities.speak import speak
 
 def conditions(query):
   return 'bye' in query

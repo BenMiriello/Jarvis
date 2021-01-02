@@ -1,9 +1,9 @@
-from respond import respond
+from utilities.respond import respond
 
-import tellTime
-import tellDay
-import search
-import searchWikipedia
+from features import tellTime
+from features import tellDay
+from features import search
+from features import searchWikipedia
 
 def runPrimaryConditions(query):
   if search.conditions(query):

@@ -1,8 +1,8 @@
-from takeCommand import takeCommand
-from respond import respond
-from runPrimaryConditions import runPrimaryConditions
-from hello import hello
-import goodbye
+from utilities.takeCommand import takeCommand
+from utilities.respond import respond
+from features.index import runPrimaryConditions
+from features.hello import hello
+import features.goodbye
 
 def takeQuery():
   hello()

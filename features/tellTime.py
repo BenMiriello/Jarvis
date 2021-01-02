@@ -1,5 +1,5 @@
 import datetime
-from speak import speak
+from utilities.speak import speak
 
 def conditions(query):
   validQueries = [
