@@ -1,36 +1,19 @@
 from takeCommand import takeCommand
 from respond import respond
+from runPrimaryConditions import runPrimaryConditions
 from hello import hello
 import goodbye
-import tellTime
-import tellDay
-import search
-import searchWikipedia
 
-def Take_query():
+def takeQuery():
   hello()
   while(True):
     query = takeCommand()
 
-    if search.conditions(query):
-      respond(query, search)
-      continue
+    conditionsMet = not runPrimaryConditions(query)
 
-    elif tellDay.conditions(query):
-      respond(query, tellDay)
-      continue
-
-    elif tellTime.conditions(query):
-      respond(query, tellTime)
-      continue
-
-    elif searchWikipedia.conditions(query):
-      respond(query, searchWikipedia)
-      continue
-
-    elif goodbye.conditions(query):
+    if conditionsMet and goodbye.conditions(query):
       respond(query, goodbye)
       exit()
 
 if __name__ == '__main__':
-  Take_query()
+  takeQuery()
