@@ -1,56 +1,64 @@
 import time
 import sys
 
-# def conditions(query):
-#   return False
+from utilities.speak import speak
 
-# def response(query):
-#   return True
+def conditions(query):
+  validQueries = [
+    'set a timer',
+    'set timer',
+    'timer',
+  ]
 
+  return any(string in query for string in validQueries)
 
+def response(query=None):
+  time_start = time.time()
 
-# TEST 1 #########################################################
+  end_hours = 0
+  end_minutes = 0
+  end_seconds = 10
 
-# class TimerError(Exception):
-#   'Timer Error'
+  seconds = 0
+  minutes = 0
+  hours = 0
 
-# class Timer:
-#   def __init__(self):
-#     self._start_time = None
+  initial_report = "\n\rSetting timer for {hours}{minutes}{seconds}".format(
+    hours = str(end_hours) + ' hours ' if (end_hours > 0) else '',
+    minutes = str(end_minutes) + ' minutes ' if (end_minutes > 0) else '',
+    seconds = str(end_seconds) + ' seconds ' if (end_seconds > 0) else ''
+  )
+  print(initial_report)
+  speak(initial_report)
 
-#   def start(self):
-#     'Starting a new timer'
-#     if self._start_time is not None:
-#       raise TimerError(f'Timer is running. Use .stop() to stop')
+  while True:
+    try:
+      print("\r{hours}{minutes}{seconds}".format(
+        hours = str(hours) + ' hours ' if (hours > 0) else '',
+        minutes = str(minutes) + ' minutes ' if (minutes > 0) else '',
+        seconds = str(seconds) + ' seconds ' if (seconds > 0) else ''
+      ))
 
-#     self._start_time = time.perf_counter()
+      time.sleep(1)
+      seconds = int(time.time() - time_start) - minutes * 60
 
-#   def stop(self):
-#     'Stop the timer and report elapsed time'
-#     if self._start_time is None:
-#       raise TimerError(f'Timer is not running. Use .start() to start')
+      if seconds >= 60:
+        minutes += 1
+        seconds = 0
 
-#     elapsed_time = time.perf_counter() - self._start_time
-#     self._start_time = None
-#     print(f'Elapsed time: {elapsed_time:0.4f} seconds')
+      if minutes >= 60:
+        hours += 1
+        minutes = 0
+        seconds = 0
 
-# if __name__ == '__main__':
-#   main()
+      if end_hours <= hours:
+        if end_minutes <= minutes:
+          if end_seconds <= seconds:
+            final_report = "\n\rTimer is up\n"
+            print(final_report, end=' ', flush=True)
+            speak(final_report)
 
+            break
 
-# TEST 2 #########################################################
-
-time_start = time.time()
-seconds = 0
-minutes = 0
-
-while True:
-  try:
-    print("\r{minutes} Minutes {seconds} Seconds".format(minutes=minutes, seconds=seconds))
-    time.sleep(1)
-    seconds = int(time.time() - time_start) - minutes * 60
-    if seconds >= 60:
-      minutes += 1
-      seconds = 0
-  except KeyboardInterrupt as e:
-    break
+    except KeyboardInterrupt as e:
+      break
