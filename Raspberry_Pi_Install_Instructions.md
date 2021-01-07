@@ -13,7 +13,7 @@ Install venv
 ```pip3 install virtualenv```
 
 Create virtual environment
-```python3 -m venv .```
+```python3 -m venv .venv```
 
 Activate virtual environment
 ```source .venv/bin/activate```
@@ -27,7 +27,10 @@ If you receive an error that reads 'Could not find a version that satisfies the 
 You will probably need to install espeak on your system
 ```sudo apt-get update && sudo apt-get install espeak```
 
-speechRecognition playsound pyttsx3 espeak word2number wikipedia gi
+Most packages can be installed with this one command
+```pip3 install speechRecognition playsound pyttsx3 speake3 word2number wikipedia```
+
+For package gi, follow the directions here [https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-getting-started](https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-getting-started).
 
 I had issues with package 'gi' not having python3-friendly syntax, giving me the error "SyntaxError: Missing parentheses in call to 'print'. Did you mean print(url)?" If you're using python3, you may also need to convert that package using 2to3.
 
@@ -44,3 +47,4 @@ If you see "AttributeError: module 'gi' has no attribute 'require_version'.", ..
 <!-- ```sudo apt-get install python3-gi``` -->
 <!-- sudo apt-get install libgirepository1.0-dev
 python -m pip install --user pygobject -->
+
