@@ -47,4 +47,3 @@ If you see "AttributeError: module 'gi' has no attribute 'require_version'.", ..
 <!-- ```sudo apt-get install python3-gi``` -->
 <!-- sudo apt-get install libgirepository1.0-dev
 python -m pip install --user pygobject -->
-
