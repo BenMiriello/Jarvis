@@ -1,4 +1,5 @@
 # Raspbery Pi Installation Instructions
+Not complete yet
 
 Clone repo
 ```git clone https://github.com/BenMiriello/Jarvis.git```
