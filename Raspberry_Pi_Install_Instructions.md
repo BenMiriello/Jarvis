@@ -1,5 +1,7 @@
 # Raspbery Pi Installation Instructions
 
+## Setting up the local environment and python packages
+
 Clone repo
 ```git clone https://github.com/BenMiriello/Jarvis.git```
 
@@ -53,3 +55,17 @@ python -m pip install --user pygobject -->
 After seeing Could not find PyAudio: ```pip3 install PyAudio``` and ```sudo apt-get install libportaudio-dev```
 
 This got me to the stage of being able to run the program, however you'll still need to connect to mic in in order to take commands and talk back.
+
+## Connecting to microphone and speaker
+
+At this stage I started connecting to my raspberry pi via ssh over local wifi rather than by connecting a monitor, keyboard, and mouse directly to the pi. Because I didn't have a compatable usb hub at the time, this freed up the usb connection for my usb mic/speaker. You'll have to setup your pi to run in a headless state (without being connected to keyboard and monitor) eventually, so while you could wait now isn't a bad time to do so. I found these instructions were the most helpful for this process: [https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup](https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup).
+
+To configure audio, I used this resource: [https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/](https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/). 
+
+To configure audio, we can start by checking that our device is connected by running `lsusb` in your pi terminal. For me it returned the following:
+```
+Bus 001 Device 002: ID 0909:005f Audio-Technica Corp. 
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+
+<!-- [NEW] Device 08:EB:ED:44:63:E1 Soundcore Flare Mini -->
