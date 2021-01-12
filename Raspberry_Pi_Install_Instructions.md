@@ -60,12 +60,45 @@ This got me to the stage of being able to run the program, however you'll still 
 
 At this stage I started connecting to my raspberry pi via ssh over local wifi rather than by connecting a monitor, keyboard, and mouse directly to the pi. Because I didn't have a compatable usb hub at the time, this freed up the usb connection for my usb mic/speaker. You'll have to setup your pi to run in a headless state (without being connected to keyboard and monitor) eventually, so while you could wait now isn't a bad time to do so. I found these instructions were the most helpful for this process: [https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup](https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup).
 
-To configure audio, I used this resource: [https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/](https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/). 
+To configure audio, I used this resource: [https://pimylifeup.com/raspberrypi-microphone/](https://pimylifeup.com/raspberrypi-microphone/).
+<!-- [https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/](https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/).  -->
 
-To configure audio, we can start by checking that our device is connected by running `lsusb` in your pi terminal. For me it returned the following:
+To configure audio, we can start by checking that our device is connected by running `arecord -l` in your pi terminal. For me it returned the following:
 ```
+card 1: iTalk02 [ iTalk-02], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+```
+
+What you need from this is the card and device number. For me those are 1 and 0.
+
+Then you'll create or edit a file at `/home/pi/.asoundrc`. If you're in `/home/pi`, you'll run `vim .asoundrc`.
+If you're not familiar with vim, you just need to know to hit `i` first to enter 'insert' mode, then type the instructions below as though in a regular code editor. Then to leave press 'esc' then type `:wq` to save the file and exit vim (or `:q` to just exit).
+
+In this file you'll want to add these lines:
+```
+pcm.!default{
+  type asym
+  capture.pcm "mic"
+}
+pcm.mic {
+  type plug
+  slave {
+    pcm "hw:1,0"
+  }
+}
+```
+Note that after "hw:" you'll put your own card and device numbers you got from 'arecord -l' in the last step.
+
+To test the mic, run `arecord --format=S16_LE --rate=16000 --file-type=wav out.wav` to record to a file called 'out.wav'. Then hit `cmd + c` to stop recording and `aplay out.wave` to play back.
+
+<!-- Need to connect a speaker to play back next! -->
+
+<!-- ```
 Bus 001 Device 002: ID 0909:005f Audio-Technica Corp. 
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-```
+``` -->
 
 <!-- [NEW] Device 08:EB:ED:44:63:E1 Soundcore Flare Mini -->
+
+https://pimylifeup.com/raspberrypi-microphone/
