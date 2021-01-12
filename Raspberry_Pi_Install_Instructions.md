@@ -40,10 +40,16 @@ Install 2to3
 Then run the conversion.
 ```2to3 -w .venv/lib/python3.7/site-packages/gi/__init__.py```
 
-If you see "AttributeError: module 'gi' has no attribute 'require_version'.", ...TBD. <!-- install gobject. -->
+If you see "AttributeError: module 'gi' has no attribute 'require_version'.", you may need to refer again to the instructions above. I had accidentally installed another package called 'gi' using pip3 which was being imported intead of the right import. I had to make sure the wrong one was uninstalled. For me, that meant starting over with a new cloned repo, but you may be able to not make my initial mistake or just uninstall it and use the right one. 
+<!-- attempted and failed methods: -->
+<!-- install gobject. -->
 <!-- ```sudo apt-get install python-gobject```-->
 <!-- ```sudo apt install python-gi python-gi-cairo python3-gi python3-gi-cairo gir1.2-gtk-3.0``` -->
 <!-- ```sudo apt install python3-gst-1.0``` -->
 <!-- ```sudo apt-get install python3-gi``` -->
 <!-- sudo apt-get install libgirepository1.0-dev
 python -m pip install --user pygobject -->
+
+After seeing Could not find PyAudio: ```pip3 install PyAudio``` and ```sudo apt-get install libportaudio-dev```
+
+This got me to the stage of being able to run the program, however you'll still need to connect to mic in in order to take commands and talk back.
