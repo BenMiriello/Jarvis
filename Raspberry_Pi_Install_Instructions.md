@@ -103,35 +103,3 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 <!-- [NEW] Device 08:EB:ED:44:63:E1 Soundcore Flare Mini -->
 
 https://pimylifeup.com/raspberrypi-microphone/
-
-**** List of CAPTURE Hardware Devices ****
-card 0: iTalk02 [ iTalk-02], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 1: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-
-lsusb:
-Bus 001 Device 004: ID 0909:005f Audio-Technica Corp. 
-Bus 001 Device 003: ID 8086:0808 Intel Corp. 
-Bus 001 Device 002: ID 1a40:0101 Terminus Technology Inc. Hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-
-pcm.!default{
-  type asym
-  capture.pcm "mic"
-  playback.pcm "speaker"
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm "hw:0,0"
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm "hw:1,1"
-  }
-}
