@@ -21,9 +21,3 @@ def takeCommand():
       print(e)
       print("Say that again")
       return "None"
-
-<<<<<<< Updated upstream
-    return Query.lower()
-=======
-    return Query.lower()
->>>>>>> Stashed changes
