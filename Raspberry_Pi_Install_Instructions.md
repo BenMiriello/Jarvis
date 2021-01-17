@@ -1,6 +1,45 @@
 # Raspbery Pi Installation Instructions
 Not complete yet
 
+## Pre-setup (Pi Headless Configuration)
+
+To enable connecting to your pi over wifi from your primary pc or mac, follow the steps below. After installing raspbian on the sd card for your pi, do the following configurations from your primary computer:
+
+This method was taken from the instructions [found here](https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup).
+
+In /boot, create a file called wpa_supplicant.conf
+```sudo vim /Volumes/boot/wpa_supplicant.conf```
+
+In wpa_supplicant write:
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+  ssid="your wifi network name here"
+  scan_ssid=1
+  psk="your wifi network password here"
+}
+```
+
+Also in boot, create a file with no contents and no extensions called 'ssh':
+```
+sudo vim /Volumes/boot/ssh
+```
+
+Elsewhere I've seen people using 'SSH' (capitalized), but for me it only worked in lowercase.
+
+Then run
+```ssh pi@raspberrypi.local```
+Enter y if prompted
+The default password is 'raspberry'. It'll ask you to set up your own.
+
+If that worked, you'll now be in your pi bash console.
+
+## Setting Up VNC
+
+Refer to [these instructions](https://www.jimbobbennett.io/screen-sharing-a-raspberry-pi-from-a-mac/).
+
 ## Setting up the local environment and python packages
 
 Clone repo
@@ -9,8 +48,11 @@ Clone repo
 Navigate into directory
 ```cd Jarvis```
 
-Install pip3
-```sudo apt install pip3```
+Make sure apt is up to date
+```sudo apt-get update```
+
+Install pip3 (may not be necessary)
+```sudo apt-get -y install python3-pip```
 
 Install venv
 ```pip3 install virtualenv```
@@ -25,15 +67,15 @@ Install dependencies from requirements.txt
 ```pip3 install -r requirements.txt```
 
 If you receive an error that reads 'Could not find a version that satisfies the requirement...', there are many suggested fixes you can find and try on the internet. Feel free to try some of them. I found it was faster to try running `python3 index.py` and installing whatever turned up as a 'ModuleNotFoundError'.
-```pip3 install speechRecognition```
+```pip3 install SpeechRecognition```
 
 You will probably need to install espeak on your system
 ```sudo apt-get update && sudo apt-get install espeak```
 
 Most packages can be installed with this one command
-```pip3 install speechRecognition playsound pyttsx3 speake3 word2number wikipedia```
+```pip3 install SpeechRecognition playsound pyttsx3 speake3 word2number wikipedia```
 
-For package gi, follow the directions here [https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-getting-started](https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-getting-started).
+For package gi, follow the directions [here](https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-getting-started) and [here](https://askubuntu.com/questions/80448/what-would-cause-the-gi-module-to-be-missing-from-python).
 
 I had issues with package 'gi' not having python3-friendly syntax, giving me the error "SyntaxError: Missing parentheses in call to 'print'. Did you mean print(url)?" If you're using python3, you may also need to convert that package using 2to3.
 
@@ -41,7 +83,7 @@ Install 2to3
 ```pip3 install 2to3```
 
 Then run the conversion.
-```2to3 -w .venv/lib/python3.7/site-packages/gi/__init__.py```
+```2to3 -w /usr/lib/python3.7/site-packages/gi/__init__.py```
 
 If you see "AttributeError: module 'gi' has no attribute 'require_version'.", you may need to refer again to the instructions above. I had accidentally installed another package called 'gi' using pip3 which was being imported intead of the right import. I had to make sure the wrong one was uninstalled. For me, that meant starting over with a new cloned repo, but you may be able to not make my initial mistake or just uninstall it and use the right one. 
 <!-- attempted and failed methods: -->
@@ -54,6 +96,8 @@ If you see "AttributeError: module 'gi' has no attribute 'require_version'.", yo
 python -m pip install --user pygobject -->
 
 After seeing Could not find PyAudio: ```pip3 install PyAudio``` and ```sudo apt-get install libportaudio-dev```
+
+If you have further issues with pyaudio, you may find help [here](https://github.com/Uberi/speech_recognition/issues/235).
 
 This got me to the stage of being able to run the program, however you'll still need to connect to mic in in order to take commands and talk back.
 
@@ -103,3 +147,8 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 <!-- [NEW] Device 08:EB:ED:44:63:E1 Soundcore Flare Mini -->
 
 https://pimylifeup.com/raspberrypi-microphone/
+
+
+...
+
+sudo apt-get install python-pyaudio python3-pyaudio

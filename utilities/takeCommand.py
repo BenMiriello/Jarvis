@@ -23,7 +23,3 @@ def takeCommand():
       return "None"
 
     return Query.lower()
-
-    card 1: iTalk02 [ iTalk-02], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
