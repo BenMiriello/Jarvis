@@ -1,11 +1,13 @@
 import speech_recognition as sr
 from playsound import playsound
 
+import settings
+
 def takeCommand():
 
   r = sr.Recognizer()
 
-  with sr.Microphone() as source:
+  with sr.Microphone(device_index=settings.mic_index) as source:
     print('Listening')
 
     r.pause_threshold = 0.5
