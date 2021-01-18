@@ -11,7 +11,7 @@ def conditions(query):
     'timer',
   ]
 
-  return any(string in query for string in validQueries)
+  return any(string in query for string in validQueries) if query else None
 
 def plural(integer):
   return 's' if integer > 1 else ''

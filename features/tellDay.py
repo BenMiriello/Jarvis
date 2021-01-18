@@ -29,7 +29,7 @@ def conditions(query):
     'when are we',
   ]
 
-  return any(string in query for string in validQueries)
+  return any(string in query for string in validQueries) if query else None
 
 def response(query=None):
   dateAndTime = datetime.datetime.today()

@@ -9,7 +9,7 @@ def conditions(query):
     # 'on wikipedia',
   ]
 
-  return any(string in query for string in validQueries)
+  return any(string in query for string in validQueries) if query else None
 
 def response(query):
   speak("Checking the wikipedia ")

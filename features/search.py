@@ -7,7 +7,7 @@ def conditions(query):
     'open google'
   ]
 
-  return any(string in query for string in validQueries)
+  return any(string in query for string in validQueries) if query else None
 
 
 def response(query=None):
