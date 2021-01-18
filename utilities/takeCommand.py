@@ -1,14 +1,14 @@
 import speech_recognition as sr
 from playsound import playsound
 
-from settings import mic_index
+import settings
 
 def takeCommand():
 
   r = sr.Recognizer()
 
-  use_mic_index = mic_index and len(sr.Microphone.list_microphone_names()) > mic_index
-  mic = sr.Microphone(device_index=mic_index) if use_mic_index else sr.Microphone()
+  use_mic_index = settings.mic_index and len(sr.Microphone.list_microphone_names()) > settings.mic_index
+  mic = sr.Microphone(device_index=settings.mic_index) if use_mic_index else sr.Microphone()
 
   with mic as source:
     print('Listening')
