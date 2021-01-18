@@ -9,8 +9,9 @@
 - Set a Timer
 
 ## Settings
+You can create a file called `settings.py` in the root directory based on `settings_example.py`.
 
-- Set mic_port for speech recognition. Check which port you want to use:
+Set mic_port for speech recognition. Check which port you want to use:
 ```
 $ python3
 >>> import speech_recognition as sr
