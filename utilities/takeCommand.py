@@ -7,8 +7,7 @@ def takeCommand():
 
   r = sr.Recognizer()
 
-  use_mic_index = settings.mic_index and len(sr.Microphone.list_microphone_names()) > settings.mic_index
-  mic_params = {'device_index': settings.mic_index} if use_mic_index else {}
+  mic_params = {'device_index': settings.mic_index} if hasattr(settings, 'mic_index') else {}
 
   with sr.Microphone(**mic_params) as source:
     print('Listening')
