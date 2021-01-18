@@ -8,6 +8,7 @@ def takeQuery():
   hello()
   while(True):
     query = takeCommand()
+    print(query)
 
     conditionsMet = runConditions(query)
 

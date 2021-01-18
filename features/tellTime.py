@@ -16,7 +16,7 @@ def conditions(query):
     'whats the time',
   ]
 
-  return any(string in query for string in validQueries) if query else None
+  return any(string in query for string in validQueries)
 
 def response(query=None):
   time = str(datetime.datetime.now())
