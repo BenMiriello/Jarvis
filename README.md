@@ -10,7 +10,7 @@
 
 ## Running on Raspberry Pi
 
-Refer to [Raspberry Pi Installation Instructions](Raspberry_Pi_Install_Instructions.md) in the root directory to get started.
+Refer to [Raspberry Pi Installation Instructions](Raspberry_Pi_Install_Instructions.md) to get started.
 
 ## Settings
 You can create a file called `settings.py` in the root directory based on `settings_example.py`.
