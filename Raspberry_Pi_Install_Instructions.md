@@ -1,5 +1,5 @@
 # Raspbery Pi Installation Instructions
-Not complete yet
+\*Note: These instructions are not yet complete
 
 ## Pre-setup (Pi Headless Configuration)
 
