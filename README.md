@@ -1,5 +1,9 @@
 # Digital Assistant
 
+Designed to run on a Raspberry Pi, but works on any system with a cli, python, and a mic and speaker.
+
+Run with command ```python3 index.py ```
+
 ## Preliminary Features
 
 - Tell Time
@@ -7,6 +11,10 @@
 - Tell Day
 
 - Set a Timer
+
+## Upcoming Features
+
+Listed [here](TODO.md)
 
 ## Running on Raspberry Pi
 
