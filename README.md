@@ -21,9 +21,9 @@ Listed [here](TODO.md)
 Refer to [Raspberry Pi Installation Instructions](Raspberry_Pi_Install_Instructions.md) to get started.
 
 ## Settings
-You can create a file called `settings.py` in the root directory based on `settings_example.py`.
-
-On a mac, you may not need to set an audio port. The system will usually pick a working audio out port for you. However, it may not be the one you want. For configuring a Raspberry Pi, however, you will have to set a mic_port in settings for speech recognition. Check which port you want to use like this:
+In [utilities/takeCommand.py](utilities/takeCommand.py), on  the `with sr.Microphone...` line, you may need to pass an argument of the device_index like this:  
+```with sr.Microphone(device_index=0) as source:```  
+Or you may not want to set a microphone at all and let the system choose it for you. This may be the case on a mac, where the system will usually pick a working audio out port for you, though it may not be the one you want. For configuring a Raspberry Pi, however, you will likely have to set a mic_port for speech recognition. Check which port you want to use like this:
 ```
 $ python3
 >>> import speech_recognition as sr

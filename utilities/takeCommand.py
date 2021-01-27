@@ -1,8 +1,6 @@
 import speech_recognition as sr
 from playsound import playsound
 
-import settings
-
 def takeCommand():
 
   r = sr.Recognizer()
