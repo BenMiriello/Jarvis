@@ -1,6 +1,8 @@
 import speech_recognition as sr
 from playsound import playsound
 
+import settings
+
 def takeCommand():
 
   r = sr.Recognizer()
@@ -16,6 +18,7 @@ def takeCommand():
 
       Query = r.recognize_google(audio, language='en-in')
       print("I heard: ", Query)
+      return Query
 
     except Exception as e:
       print(e)
