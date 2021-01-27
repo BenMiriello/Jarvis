@@ -7,9 +7,7 @@ def takeCommand():
 
   r = sr.Recognizer()
 
-  mic_params = {'device_index': settings.mic_index} if hasattr(settings, 'mic_index') else {}
-
-  with sr.Microphone(**mic_params) as source:
+  with sr.Microphone(device_index=0) as source:
     print('Listening')
 
     r.pause_threshold = 0.5
