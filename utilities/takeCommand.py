@@ -5,7 +5,7 @@ def takeCommand():
 
   r = sr.Recognizer()
 
-  with sr.Microphone(device_index=0) as source:
+  with sr.Microphone(device_index=1) as source:
     print('Listening')
 
     r.pause_threshold = 0.5
