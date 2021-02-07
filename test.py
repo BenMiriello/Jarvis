@@ -1,11 +1,13 @@
 import speech_recognition as sr
 
 r = sr.Recognizer()
-speech = sr.Microphone(device_index=1)
+mic = sr.Microphone(device_index=1)
 
-with speech as source:
+with mic as source:
     print('say something...')
-    audio = r.adjust_for_ambient_noise(source)
+    r.pause_threshold = 0.5
+    # r.adjust_for_ambient_noise(source)
+    r.energy_threshold = 2000
     audio = r.listen(source)
 try:
     recog = r.recognize_google(audio, language = 'en-US')
