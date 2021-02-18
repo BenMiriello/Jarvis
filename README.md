@@ -1,4 +1,4 @@
-# Digital Assistant
+# Jarvis - Digital Assistant
 
 Designed to run on a Raspberry Pi, but works on any system with a cli, python, and a mic and speaker.
 
