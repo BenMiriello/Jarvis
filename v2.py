@@ -7,13 +7,12 @@ r.energy_threshold = 500
 
 def record_and_interpret():
     print('speak now')
-    record_audio(5)
-    just_recorded = sr.AudioFile('spoken.wav')
-    with just_recorded as source:
-        audio = r.record(source)
-        audio = r.listen(source)
-        spoken = r.recognize_google(audio)
-        print('you said ' + spoken)
+    while True:
+        with sr.Microphone() as source:
+            # audio = r.record(source)
+            audio = r.listen(source)
+            spoken = r.recognize_google(audio)
+            print('you said ' + spoken)
 
 if __name__ == '__main__':
     record_and_interpret()
