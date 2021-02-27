@@ -1,4 +1,4 @@
-# Digital Assistant
+# Jarvis - Digital Assistant
 
 Designed to run on a Raspberry Pi, but works on any system with a cli, python, and a mic and speaker.
 
@@ -20,6 +20,7 @@ Listed [here](TODO.md)
 
 Refer to [Raspberry Pi Installation Instructions](Raspberry_Pi_Install_Instructions.md) to get started.
 
+<!--
 ## Settings
 In [utilities/takeCommand.py](utilities/takeCommand.py), on  the `with sr.Microphone...` line, you may need to pass an argument of the device_index like this:  
 ```with sr.Microphone(device_index=0) as source:```  
@@ -30,3 +31,4 @@ $ python3
 >>> sr.Microphone.list_microphone_names()
 ```
 The index of the mic you want in the array should be the mic_port.
+-->
